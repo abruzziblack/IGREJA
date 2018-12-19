@@ -1,0 +1,49 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-produto-heading" jhiTranslate="lojaApp.produto.home.createOrEditLabel">Create or edit a Produto</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!produto.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="produto.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lojaApp.produto.nome" for="field_nome">Nome</label>
+                    <input type="text" class="form-control" name="nome" id="field_nome"
+                        [(ngModel)]="produto.nome" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lojaApp.produto.descricao" for="field_descricao">Descricao</label>
+                    <input type="text" class="form-control" name="descricao" id="field_descricao"
+                        [(ngModel)]="produto.descricao" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lojaApp.produto.preco" for="field_preco">Preco</label>
+                    <input type="number" class="form-control" name="preco" id="field_preco"
+                        [(ngModel)]="produto.preco" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lojaApp.produto.dataVencimento" for="field_dataVencimento">Data Vencimento</label>
+                    <div class="input-group">
+                        <input id="field_dataVencimento" type="text" class="form-control" name="dataVencimento" ngbDatepicker  #dataVencimentoDp="ngbDatepicker" [(ngModel)]="produto.dataVencimento"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dataVencimentoDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
